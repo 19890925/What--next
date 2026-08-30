@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WHAT NEXT? — Action Plan</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f6f4;color:#18231f;font-family:Arial,sans-serif}.app{max-width:520px;margin:auto;min-height:100vh;background:#fff}.hero{background:#123b2a;color:#fff;padding:26px 20px}.logo{font-size:30px;font-weight:800}.tag{margin-top:7px;line-height:1.4;opacity:.92}main{padding:20px}.card{border:1px solid #dfe6e2;border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 4px 16px #00000008}h2{margin:10px 0 8px}label{display:block;font-weight:700;margin:13px 0 7px}input,select{width:100%;padding:14px;border:1px solid #cbd5d0;border-radius:12px;font-size:16px}button{width:100%;padding:14px;margin-top:12px;border:0;border-radius:12px;background:#123b2a;color:#fff;font-size:16px;font-weight:700}.alt{background:#edf2ee;color:#123b2a}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.service{background:#fff;color:#18231f;border:1px solid #dfe6e2;text-align:left}.pill{display:inline-block;padding:7px 10px;border-radius:20px;background:#eaf1ec;color:#123b2a;font-size:12px;font-weight:700}.small{font-size:13px;line-height:1.5;color:#64716b}.step{display:flex;gap:12px;margin:17px 0}.num{min-width:30px;height:30px;border-radius:50%;background:#123b2a;color:#fff;display:grid;place-items:center;font-weight:700}.plan{background:#f8faf8;border-radius:14px;padding:15px;margin-top:12px}.hidden{display:none}.price{font-size:24px;font-weight:800}.check{margin:9px 0}.note{background:#fff8e6;border-color:#f0dfae}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="hero"><div class="logo">WHAT NEXT?</div><div class="tag">Tell us what you want to do. We'll show you what to do next.</div></header>
+<main>
+<section id="home">
+<div class="card"><label>What are you trying to accomplish?</label><input id="goal" placeholder="e.g. I want to start a business"><button onclick="search()">FIND MY NEXT STEP</button></div>
+<p class="small">Choose a service:</p>
+<div class="grid">
+<button class="service" onclick="openSvc('business')">💼 Start a Business</button>
+<button class="service" onclick="openSvc('job')">📄 Apply for a Job</button>
+<button class="service" onclick="openSvc('school')">🎓 Apply for School</button>
+<button class="service" onclick="openSvc('passport')">🛂 Get a Passport</button>
+</div>
+</section>
+
+<section id="business" class="hidden">
+<span class="pill">START A BUSINESS</span><h2>Let's personalize your plan</h2>
+<div class="card">
+<label>What are you registering?</label><select id="bt"><option>Business Name</option><option>Company</option></select>
+<label>Do you have a proposed name?</label><select id="bn"><option>Yes</option><option>No</option></select>
+<button onclick="businessFree()">SHOW FREE STEPS</button>
+</div><button class="alt" onclick="home()">← Back</button>
+</section>
+
+<section id="job" class="hidden">
+<span class="pill">JOB APPLICATION</span><h2>Let's personalize your plan</h2>
+<div class="card">
+<label>Highest qualification</label><select><option>SSCE</option><option>OND/NCE</option><option>HND</option><option>Degree</option><option>Postgraduate</option></select>
+<label>Do you have a current CV?</label><select id="cv"><option>Yes</option><option>No</option></select>
+<label>What kind of job?</label><input id="jt" placeholder="e.g. customer service">
+<button onclick="jobFree()">SHOW FREE STEPS</button>
+</div><button class="alt" onclick="home()">← Back</button>
+</section>
+
+<section id="school" class="hidden">
+<span class="pill">SCHOOL APPLICATION</span><h2>Let's personalize your plan</h2>
+<div class="card">
+<label>What level?</label><select id="level"><option>100 Level / UTME</option><option>Direct Entry</option><option>Postgraduate</option></select>
+<label>Do you have a NIN?</label><select id="snin"><option>Yes</option><option>No</option></select>
+<label>What do you want to study?</label><input id="course" placeholder="e.g. Sociology">
+<button onclick="schoolFree()">SHOW FREE STEPS</button>
+</div><button class="alt" onclick="home()">← Back</button>
+</section>
+
+<section id="passport" class="hidden">
+<span class="pill">NIGERIAN PASSPORT</span><h2>Let's personalize your plan</h2>
+<div class="card">
+<label>Is this your first passport?</label><select><option>Yes</option><option>Renewal/reissue</option></select>
+<label>Do you have a NIN?</label><select id="pnin"><option>Yes</option><option>No</option></select>
+<button onclick="passportFree()">SHOW FREE STEPS</button>
+</div><button class="alt" onclick="home()">← Back</button>
+</section>
+
+<section id="result" class="hidden">
+<span class="pill">FREE RESULT</span><h2 id="title"></h2><div id="out"></div>
+</section>
+
+<section id="paid" class="hidden">
+<span class="pill">COMPLETE ACTION PLAN</span><h2>Your personalized plan</h2>
+<div class="card">
+<p>Get a more useful action plan containing:</p>
+<div class="check">✓ Personalized checklist</div>
+<div class="check">✓ Information and documents to prepare</div>
+<div class="check">✓ What to do first and what comes next</div>
+<div class="check">✓ Common mistakes to avoid</div>
+<div class="check">✓ Official resources</div>
+<div class="check">✓ Final “What Next?” action</div>
+<hr>
+<p class="price">₦100</p>
+<p class="small">Payment is not connected yet. This is a prototype test.</p>
+<button onclick="demoPay()">CONTINUE TO PAYMENT</button>
+</div>
+<button class="alt" onclick="home()">← Start again</button>
+</section>
+
+<section id="success" class="hidden">
+<span class="pill">DEMO COMPLETE</span><h2>Action Plan Ready</h2>
+<div class="card"><p><b>🎉 This is where the paid plan would be delivered.</b></p><p class="small">In the real version, the next step will be a secure payment gateway. We will not collect your bank details in this prototype.</p></div>
+<button class="alt" onclick="home()">← Back to WHAT NEXT?</button>
+</section>
+</main></div>
+
+<script>
+const ids=['home','business','job','school','passport','result','paid','success'];
+function hide(){ids.forEach(x=>document.getElementById(x).classList.add('hidden'))}
+function home(){hide();document.getElementById('home').classList.remove('hidden')}
+function openSvc(x){hide();document.getElementById(x).classList.remove('hidden')}
+function search(){let x=document.getElementById('goal').value.toLowerCase();if(x.includes('business'))openSvc('business');else if(x.includes('job')||x.includes('work'))openSvc('job');else if(x.includes('school')||x.includes('university')||x.includes('jamb'))openSvc('school');else if(x.includes('passport'))openSvc('passport');else alert('This service is coming next. Try Business, Job, School or Passport.')}
+function free(title,html){hide();document.getElementById('result').classList.remove('hidden');document.getElementById('title').textContent=title;document.getElementById('out').innerHTML=html}
+function offer(){hide();document.getElementById('paid').classList.remove('hidden')}
+function businessFree(){free('Your free business steps',`<div class="card"><div class="step"><div class="num">1</div><div><b>Choose your structure</b><div class="small">You selected ${bt.value}.</div></div></div><div class="step"><div class="num">2</div><div><b>Prepare/check your name</b><div class="small">${bn.value==='Yes'?'Check availability of your proposed name.':'Prepare several possible names.'}</div></div></div><div class="step"><div class="num">3</div><div><b>Check the official CAC process</b><div class="small">Review current requirements, submit the required information/documents and pay the applicable official fee.</div></div></div></div><div class="card"><b>Need the complete personalized checklist?</b><p class="small">Get the full Action Plan for a small fee.</p><button onclick="offer()">GET COMPLETE PLAN — ₦100</button></div>`)}
+function jobFree(){free('Your free job steps',`<div class="card"><div class="step"><div class="num">1</div><div><b>Choose a target role</b><div class="small">${jt.value||'Select a specific job role'}.</div></div></div><div class="step"><div class="num">2</div><div><b>${cv.value==='Yes'?'Tailor your CV':'Create your CV'}</b><div class="small">Match genuine skills and experience to the vacancy.</div></div></div><div class="step"><div class="num">3</div><div><b>Apply and track</b><div class="small">Follow the employer's instructions and record your applications.</div></div></div></div><div class="card"><b>Want the complete plan?</b><button onclick="offer()">GET COMPLETE PLAN — ₦100</button></div>`)}
+function schoolFree(){free('Your free school steps',`<div class="card"><div class="step"><div class="num">1</div><div><b>Confirm your route</b><div class="small">${level.value}; course: ${course.value||'your chosen course'}.</div></div></div><div class="step"><div class="num">2</div><div><b>Check current requirements</b><div class="small">Verify JAMB and institution requirements, deadlines and eligibility.</div></div></div><div class="step"><div class="num">3</div><div><b>Complete the official process</b><div class="small">Use official JAMB and institution channels.</div></div></div></div><div class="card"><b>Want the complete plan?</b><button onclick="offer()">GET COMPLETE PLAN — ₦100</button></div>`)}
+function passportFree(){free('Your free passport steps',`<div class="card"><div class="step"><div class="num">1</div><div><b>Prepare documents</b><div class="small">Check the current Nigeria Immigration Service requirements for your application type.</div></div></div><div class="step"><div class="num">2</div><div><b>Apply officially</b><div class="small">Follow the current online application, payment and appointment instructions.</div></div></div><div class="step"><div class="num">3</div><div><b>Attend enrolment</b><div class="small">Follow your appointment instructions for biometric capture.</div></div></div></div><div class="card"><b>Want the complete plan?</b><button onclick="offer()">GET COMPLETE PLAN — ₦100</button></div>`)}
+function demoPay(){hide();document.getElementById('success').classList.remove('hidden')}
+</script>
+</body></html>
