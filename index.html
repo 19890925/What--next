@@ -108,4 +108,14 @@ function demoPay(){hide();document.getElementById('success').classList.remove('h
 <script>
   // WHAT NEXT? App enhancement
   console.log("WHAT NEXT? is ready!");
+  function showNextAction(service) {
+  const actions = {
+    business: "Review your business structure and check the availability of your proposed name.",
+    job: "Tailor your CV to the specific job you want and prepare to apply.",
+    school: "Verify the current admission requirements, deadlines and eligibility through official channels.",
+    passport: "Prepare your required documents and verify the current application requirements."
+  };
+
+  alert("YOUR NEXT ACTION\n\n" + (actions[service] || "Review your plan and take the next recommended step."));
+  }
 </script></body></html>
