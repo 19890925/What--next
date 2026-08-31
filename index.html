@@ -120,7 +120,11 @@ function businessFree(){free('Your free business steps',`<div class="card"><div 
 function jobFree(){free('Your free job steps',`<div class="card"><div class="step"><div class="num">1</div><div><b>Choose a target role</b><div class="small">${jt.value||'Select a specific job role'}.</div></div></div><div class="step"><div class="num">2</div><div><b>${cv.value==='Yes'?'Tailor your CV':'Create your CV'}</b><div class="small">Match genuine skills and experience to the vacancy.</div></div></div><div class="step"><div class="num">3</div><div><b>Apply and track</b><div class="small">Follow the employer's instructions and record your applications.</div></div></div></div><div class="card"><b>Want the complete plan?</b><button onclick="offer();showNextAction('job')">GET COMPLETE PLAN — ₦100</button></div>`)}
 function schoolFree(){free('Your free school steps',`<div class="card"><div class="step"><div class="num">1</div><div><b>Confirm your route</b><div class="small">${level.value}; course: ${course.value||'your chosen course'}.</div></div></div><div class="step"><div class="num">2</div><div><b>Check current requirements</b><div class="small">Verify JAMB and institution requirements, deadlines and eligibility.</div></div></div><div class="step"><div class="num">3</div><div><b>Complete the official process</b><div class="small">Use official JAMB and institution channels.</div></div></div></div><div class="card"><b>Want the complete plan?</b><button onclick="offer();showNextAction('school')">GET COMPLETE PLAN — ₦100</button></div>`)}
 function passportFree(){free('Your free passport steps',`<div class="card"><div class="step"><div class="num">1</div><div><b>Prepare documents</b><div class="small">Check the current Nigeria Immigration Service requirements for your application type.</div></div></div><div class="step"><div class="num">2</div><div><b>Apply officially</b><div class="small">Follow the current online application, payment and appointment instructions.</div></div></div><div class="step"><div class="num">3</div><div><b>Attend enrolment</b><div class="small">Follow your appointment instructions for biometric capture.</div></div></div></div><div class="card"><b>Want the complete plan?</b><button onclick="offer();showNextAction('passport')">GET COMPLETE PLAN — ₦100</button></div>`)}
-function demoPay(){hide();document.getElementById('success').classList.remove('hidden')}
+function demoPay(){
+  hide();
+  document.getElementById('success').classList.remove('hidden');
+  completePlan(window.selectedService || 'business');
+}
 </script>
 <script>
   // WHAT NEXT? App enhancement
@@ -133,6 +137,59 @@ function demoPay(){hide();document.getElementById('success').classList.remove('h
     passport: "Prepare your required documents and verify the current application requirements."
   };
 
-  alert("YOUR NEXT ACTION\n\n" + (actions[service] || "Review your plan and take the next recommended step."));
+  
+    window.selectedService = service;alert("YOUR NEXT ACTION\n\n" + (actions[service] || "Review your plan and take the next recommended step."));
   }
+  function completePlan(service) {
+  const plans = {
+    business: {
+      title: "🏢 Your Business Complete Plan",
+      steps: [
+        "Define the business activity and confirm the business name you want to use.",
+        "Prepare the personal and business information required for registration.",
+        "Check the availability of the proposed name through the official registration channel.",
+        "Complete the applicable registration steps and keep your registration documents safely.",
+        "Avoid paying unofficial agents or submitting incorrect information.",
+        "WHAT NEXT? Start by confirming your business name and the information you need for registration."
+      ]
+    },
+    job: {
+      title: "💼 Your Job Complete Plan",
+      steps: [
+        "Identify the specific job role you are targeting.",
+        "Tailor your CV and application to the requirements of that role.",
+        "Prepare relevant certificates, references and other supporting information.",
+        "Apply through the employer's official recruitment channel.",
+        "Keep a record of applications and avoid unverified recruitment requests.",
+        "WHAT NEXT? Find one suitable vacancy and prepare a targeted application today."
+      ]
+    },
+    school: {
+      title: "🎓 Your School Complete Plan",
+      steps: [
+        "Confirm the programme, institution and admission route you want to pursue.",
+        "Check the current admission requirements and eligibility.",
+        "Prepare your academic records, identification and other required documents.",
+        "Confirm application deadlines and complete the application through the official institution channel.",
+        "Avoid relying on unverified admission agents or outdated requirements.",
+        "WHAT NEXT? Verify the current requirements on the institution's official website."
+      ]
+    },
+    passport: {
+      title: "🛂 Your Passport Complete Plan",
+      steps: [
+        "Confirm that you have the required identification and supporting information.",
+        "Check the current passport application requirements and applicable fees.",
+        "Complete the application through the official passport channel.",
+        "Prepare for the required appointment, enrolment or biometric process.",
+        "Avoid unofficial agents and unverified payment channels.",
+        "WHAT NEXT? Check the current requirements through the official passport service before applying."
+      ]
+    }
+  };
+
+  const plan = plans[service] || plans.business;
+
+  alert(plan.title + "\n\n" + plan.steps.map((step, i) => (i + 1) + ". " + step).join("\n\n"));
+    }
 </script></body></html>
