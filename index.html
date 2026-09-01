@@ -124,7 +124,7 @@ function passportFree(){free('Your free passport steps',`<div class="card"><div 
 function housingFree(){window.selectedService='housing';free('Your free housing steps',`<div class="card"><div class="step"><div class="num">1</div><div><b>Define your housing need</b><div class="small">Decide whether you need a room, apartment, house or another type of accommodation.</div></div></div><div class="step"><div class="num">2</div><div><b>Set your budget</b><div class="small">Determine what you can realistically afford, including rent and other charges.</div></div></div><div class="step"><div class="num">3</div><div><b>Choose your location</b><div class="small">Consider transport, security, work or school proximity.</div></div></div><div class="step"><div class="num">4</div><div><b>Verify the property</b><div class="small">Inspect the property and confirm the landlord or agent before making payment.</div></div></div><div class="step"><div class="num">5</div><div><b>Understand the agreement</b><div class="small">Read the tenancy terms carefully and clarify all charges before signing.</div></div></div><div class="step"><div class="num">6</div><div><b>Avoid scams</b><div class="small">Do not pay an unverified agent or send money for a property you have not properly verified.</div></div></div></div><div class="card"><b>Want the complete plan?</b><button onclick="offer();showNextAction('housing')">GET COMPLETE PLAN — ₦100</button></div>`)}
 function demoPay(){
   hide();
-  document.getElementById('success').classList.remove('hidden');alert("Selected service: " + window.selectedService);
+  document.getElementById('success').classList.remove('hidden');
   completePlan(window.selectedService || 'business');
 }
 </script>
