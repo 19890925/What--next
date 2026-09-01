@@ -204,8 +204,10 @@ function demoPay(){
   };
 
   const plan = plans[service] || plans.business;
-const heading = document.getElementById('planHeading');
-if (heading) heading.textContent = '🎯 Your Complete ' + (plan.title || 'WHAT NEXT?') + ' Plan';
+  const heading = document.getElementById('planHeading');
+if (heading) {
+  heading.textContent = plan.title;
+  }
 
 if (!plan) {
   alert("Housing plan not found. Service received: " + service);
