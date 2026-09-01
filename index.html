@@ -13,6 +13,384 @@
 <div class="app">
 <header class="hero"><div class="logo">WHAT NEXT?</div><div class="tag">Tell us what you want to do. We'll show you what to do next.</div></header>
 <main>
+<section id="home">
+  <div class="card">
+    <span class="pill">START HERE</span>
+    <h2>What do you want to do?</h2>
+    <p class="small">
+      Choose a service and get a clear action plan for what to do next.
+    </p>
+
+    <div class="grid">
+      <button class="service" onclick="startService('housing')">
+        🏠 Housing
+      </button>
+
+      <button class="service" onclick="startService('job')">
+        💼 Jobs
+      </button>
+
+      <button class="service" onclick="startService('school')">
+        🎓 School
+      </button>
+
+      <button class="service" onclick="startService('passport')">
+        🛂 Passport
+      </button>
+
+      <button class="service" onclick="startService('business')">
+        🏢 Business
+      </button>
+    </div>
+  </div>
+</section>
+  <section id="freePlan" class="hidden">
+  <div class="card">
+    <span class="pill" id="serviceBadge">SERVICE</span>
+
+    <h2 id="freeTitle">Your Free Action Plan</h2>
+
+    <div id="freeSteps"></div>
+  </div>
+
+  <div class="card">
+    <h2>Want the complete plan?</h2>
+
+    <p class="small">
+      Get the full step-by-step plan for your selected goal.
+    </p>
+
+    <div class="price">₦100</div>
+
+    <button onclick="showPayment()">
+      GET COMPLETE PLAN — ₦100
+    </button>
+
+    <button class="alt" onclick="goHome()">
+      BACK TO HOME
+    </button>
+  </div>
+  </section>
+  <section id="payment" class="hidden">
+  <div class="card">
+    <span class="pill">COMPLETE PLAN</span>
+
+    <h2>Get Your Complete Plan</h2>
+
+    <p class="small" id="paymentText">
+      Your complete action plan is ready to continue.
+    </p>
+
+    <div class="price">₦100</div>
+
+    <button onclick="continuePayment()">
+      CONTINUE
+    </button>
+
+    <button class="alt" onclick="showFreePlan()">
+      BACK
+    </button>
+  </div>
+  </section>
+  <section id="completePlan" class="hidden">
+
+  <div class="card">
+    <span class="pill" id="completeBadge">COMPLETE PLAN</span>
+
+    <h2 id="completeTitle">Your Complete Plan</h2>
+
+    <p class="small">
+      Follow these steps in order and take action at each stage.
+    </p>
+
+    <div id="completeSteps"></div>
+  </div>
+
+  <div class="card">
+    <h2>🌟 WHAT NEXT?</h2>
+
+    <p class="small" id="nextAction"></p>
+
+    <button onclick="goHome()">
+      START ANOTHER GOAL
+    </button>
+  </div>
+
+  </section>
+  <script>
+
+const services = {
+
+  housing: {
+    name: "Housing",
+    icon: "🏠",
+
+    free: [
+      ["Define your housing need", "Decide the type of accommodation you need."],
+      ["Set your budget", "Determine what you can realistically afford."],
+      ["Choose your location", "Consider work, school, transport and your preferred area."],
+      ["Search for options", "Compare suitable properties from reliable sources."],
+      ["Verify the property", "Inspect the property and verify the landlord or agent."],
+      ["Avoid scams", "Do not pay unverified agents or for properties you have not properly checked."]
+    ],
+
+    complete: [
+      "Define the type of housing you need.",
+      "Set your realistic housing budget.",
+      "Choose your preferred location.",
+      "Search and compare suitable properties.",
+      "Inspect the property.",
+      "Verify the landlord or agent.",
+      "Confirm rent and additional charges.",
+      "Read the tenancy agreement carefully.",
+      "Make payment only through a verified arrangement.",
+      "Keep copies of receipts and important documents."
+    ],
+
+    next: "Start by choosing your preferred location and writing down your maximum realistic budget."
+  },
+
+
+  job: {
+    name: "Jobs",
+    icon: "💼",
+
+    free: [
+      ["Choose a target role", "Decide the type of job you want."],
+      ["Prepare your CV", "Create a clear CV showing your education, skills and experience."],
+      ["Find genuine opportunities", "Search through reputable employers and verified platforms."],
+      ["Apply carefully", "Follow the employer's official application process."],
+      ["Prepare for interviews", "Research the organisation and practise common questions."],
+      ["Avoid job scams", "Never pay unverified people who promise to secure employment."]
+    ],
+
+    complete: [
+      "Choose your target job role.",
+      "Check the required qualifications.",
+      "Prepare or update your CV.",
+      "Prepare a professional cover letter where appropriate.",
+      "Find genuine vacancies.",
+      "Apply through official channels.",
+      "Keep records of applications.",
+      "Prepare for interviews.",
+      "Verify recruitment communications.",
+      "Continue applying until you secure the right opportunity."
+    ],
+
+    next: "Choose one job role today and prepare your CV specifically for that role."
+  },
+
+
+  school: {
+    name: "School",
+    icon: "🎓",
+
+    free: [
+      ["Define your study goal", "Choose the programme or course you want."],
+      ["Choose suitable schools", "Compare institutions and available programmes."],
+      ["Check requirements", "Confirm the current admission requirements."],
+      ["Prepare documents", "Gather certificates, transcripts and identification."],
+      ["Apply officially", "Use the institution's official application process."],
+      ["Track your application", "Keep your application details and monitor updates."]
+    ],
+
+    complete: [
+      "Define the programme you want to study.",
+      "Identify suitable institutions.",
+      "Compare tuition and other costs.",
+      "Confirm admission requirements.",
+      "Prepare the required documents.",
+      "Complete the official application.",
+      "Pay approved fees through verified channels.",
+      "Monitor your application.",
+      "Prepare for screening or admission requirements.",
+      "Complete registration after admission."
+    ],
+
+    next: "Choose your preferred course and identify three suitable schools offering it."
+  },
+
+
+  passport: {
+    name: "Passport",
+    icon: "🛂",
+
+    free: [
+      ["Prepare documents", "Check the current official requirements for your application."],
+      ["Apply officially", "Follow the current online application instructions."],
+      ["Make approved payment", "Use only official payment instructions."],
+      ["Attend enrolment", "Follow your appointment instructions for biometric capture."],
+      ["Keep your details", "Save your application reference and payment information."],
+      ["Track your application", "Follow official updates about your application."]
+    ],
+
+    complete: [
+      "Confirm the passport service you need.",
+      "Check the latest official requirements.",
+      "Prepare the required documents.",
+      "Complete the official application.",
+      "Make approved payments through official channels.",
+      "Attend the required appointment.",
+      "Complete biometric enrolment.",
+      "Keep your application reference.",
+      "Track your application.",
+      "Collect the passport according to official instructions."
+    ],
+
+    next: "Start by checking the latest official passport requirements for your application type."
+  },
+
+
+  business: {
+    name: "Business",
+    icon: "🏢",
+
+    free: [
+      ["Choose your business idea", "Identify a product or service that solves a real problem."],
+      ["Know your customers", "Identify who needs your product or service."],
+      ["Set your budget", "Determine how much you can realistically invest."],
+      ["Study the market", "Compare competitors, prices and customer demand."],
+      ["Check requirements", "Identify relevant registration and operating requirements."],
+      ["Start small", "Test your idea before committing significant resources."]
+    ],
+
+    complete: [
+      "Define your business idea.",
+      "Identify your target customers.",
+      "Research market demand.",
+      "Study competitors and pricing.",
+      "Calculate startup and operating costs.",
+      "Choose an appropriate business structure.",
+      "Check applicable registration requirements.",
+      "Create a simple marketing plan.",
+      "Launch with a manageable first product or service.",
+      "Review results and improve the business."
+    ],
+
+    next: "Write down your business idea, target customer and estimated starting budget today."
+  }
+
+};
+    let selectedService = null;
+
+function hideAll(){
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("freePlan").classList.add("hidden");
+  document.getElementById("payment").classList.add("hidden");
+  document.getElementById("completePlan").classList.add("hidden");
+}
+
+function startService(service){
+
+  selectedService = service;
+
+  const data = services[service];
+
+  hideAll();
+
+  document.getElementById("freePlan").classList.remove("hidden");
+
+  document.getElementById("serviceBadge").textContent =
+    data.icon + " " + data.name;
+
+  document.getElementById("freeTitle").textContent =
+    "Your Free " + data.name + " Plan";
+
+  document.getElementById("freeSteps").innerHTML =
+    data.free.map((item, index) => `
+      <div class="step">
+        <div class="num">${index + 1}</div>
+        <div>
+          <b>${item[0]}</b>
+          <div class="small">${item[1]}</div>
+        </div>
+      </div>
+    `).join("");
+}
+
+function showPayment(){
+
+  if(!selectedService) return;
+
+  hideAll();
+
+  const data = services[selectedService];
+
+  document.getElementById("payment").classList.remove("hidden");
+
+  document.getElementById("paymentText").textContent =
+    "You selected the complete " +
+    data.name.toLowerCase() +
+    " action plan.";
+}
+
+function showFreePlan(){
+
+  if(!selectedService) return;
+
+  hideAll();
+
+  document.getElementById("freePlan").classList.remove("hidden");
+}
+
+function continuePayment(){
+
+  /*
+    Temporary payment demonstration.
+    No bank details are collected.
+  */
+
+  showCompletePlan();
+}
+
+function showCompletePlan(){
+
+  if(!selectedService) return;
+
+  hideAll();
+
+  const data = services[selectedService];
+
+  document.getElementById("completePlan").classList.remove("hidden");
+
+  document.getElementById("completeBadge").textContent =
+    data.icon + " " + data.name;
+
+  document.getElementById("completeTitle").textContent =
+    "Your Complete " + data.name + " Plan";
+
+  document.getElementById("completeSteps").innerHTML =
+    data.complete.map((step, index) => `
+      <div class="step">
+        <div class="num">${index + 1}</div>
+        <div>
+          <b>${step}</b>
+        </div>
+      </div>
+    `).join("");
+
+  document.getElementById("nextAction").textContent =
+    data.next;
+}
+
+function goHome(){
+
+  selectedService = null;
+
+  hideAll();
+
+  document.getElementById("home").classList.remove("hidden");
+}
+
+hideAll();
+document.getElementById("home").classList.remove("hidden");
+
+</script>
+  </main>
+</div>
+</body>
+</html>
+  
 
 
 
