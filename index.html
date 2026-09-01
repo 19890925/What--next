@@ -203,7 +203,12 @@ function demoPay(){
 },
   };
 
-  const plan = plans[service] || plans.business;
+  const plan = plans[service];
+
+if (!plan) {
+  alert("Housing plan not found. Service received: " + service);
+  return;
+}
 
   alert(plan.title + "\n\n" + plan.steps.map((step, i) => (i + 1) + ". " + step).join("\n\n"));
     }
