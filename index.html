@@ -429,17 +429,17 @@ function goHome(){
   hideAll();
 
   document.getElementById("home").classList.remove("hidden");
-    }
+}
 
+checkPaymentStatus();
+
+hideAll();
 
 if (
   !new URLSearchParams(window.location.search).get("transaction_id")
 ) {
   document.getElementById("home").classList.remove("hidden");
 }
-
-
-
 
 </script>
   </main>
