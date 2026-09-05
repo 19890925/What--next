@@ -424,11 +424,13 @@ function goHome(){
 
   selectedService = null;
 
+  localStorage.removeItem("selectedService");
+
   hideAll();
 
-  checkPaymentStatus();
+  document.getElementById("home").classList.remove("hidden");
+    }
 
-hideAll();
 
 if (
   !new URLSearchParams(window.location.search).get("transaction_id")
