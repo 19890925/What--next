@@ -278,7 +278,7 @@ const services = {
   }
 
 };
-    let selectedService = null;
+    let selectedService = localStorage.getItem("selectedService");
  async function startPayment() {
   if (!selectedService) return;
 
